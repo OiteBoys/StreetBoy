@@ -6,6 +6,7 @@
 using namespace cocos2d;
 
 #define SPRITE(__NAME__) Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(__NAME__))
+#define SPRITE_FRAME(__NAME__) SpriteFrameCache::getInstance()->getSpriteFrameByName(__NAME__)
 
 // Menu in Welcome Scene
 const auto WELCOME_PANEL_POSITION = Point(400.0f, 240.0f);

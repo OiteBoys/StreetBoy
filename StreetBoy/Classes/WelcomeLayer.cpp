@@ -1,4 +1,5 @@
 #include "WelcomeLayer.h"
+#include "GameScene.h"
 
 WelcomeLayer::WelcomeLayer(){}
 
@@ -84,6 +85,9 @@ void WelcomeLayer::initMenu() {
 }
 
 void WelcomeLayer::start(Object *sender) {
+	auto scene = GameScene::create();
+	auto transition = CCTransitionSplitRows::create(1, scene);
+	Director::getInstance()->replaceScene(transition);
 }
 
 void WelcomeLayer::selectBoy(Object *sender) {

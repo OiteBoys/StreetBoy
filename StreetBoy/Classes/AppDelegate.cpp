@@ -31,6 +31,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // run
     director->runWithScene(scene);
 
+	Director::getInstance()->setProjection(Director::Projection::_2D);
+
     return true;
 }
 
