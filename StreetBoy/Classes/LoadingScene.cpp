@@ -1,4 +1,6 @@
 #include "LoadingScene.h"
+#include "WelcomeScene.h"
+
 LoadingScene::LoadingScene(){}
 
 LoadingScene::~LoadingScene(){}
@@ -14,6 +16,7 @@ bool LoadingScene::init() {
 void LoadingScene::onEnter(){
 	// add background to current scene
 	Sprite *background = Sprite::create("loading.png");
+	background->setScale(2);
 	Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
 	background->setPosition(origin.x + visibleSize.width/2, origin.y + visibleSize.height/2);
@@ -30,7 +33,7 @@ void LoadingScene::loadingCallBack(Texture2D *texture){
 
 	// After load all the things, change the scene to new one
 	//auto scene = HelloWorld::createScene();
-	auto scene = HelloWorld::createScene();
+	auto scene = WelcomeScene::create();
 	auto transition = CCTransitionSplitRows::create(1, scene);
 	Director::getInstance()->replaceScene(transition);
 }
