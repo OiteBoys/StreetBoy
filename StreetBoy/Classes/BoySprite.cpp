@@ -25,10 +25,10 @@ bool BoySprite::init() {
 	this->boyIndex = 1;
 	sprintf(name, "boy%02d_run01.png", this->boyIndex);
 	if(Sprite::initWithSpriteFrame(SPRITE_FRAME(name))) {
-		auto running = this->createAnimation("boy%02_run%02d.png",this->boyIndex, 8, 8);
+		auto running = this->createAnimation("boy%02d_run%02d.png",this->boyIndex, 8, 8);
 		this->runningAction = RepeatForever::create(Animate::create(running));
 
-		auto slide = this->createAnimation("boy%02_slide%02d.png",this->boyIndex, 4, 4);
+		auto slide = this->createAnimation("boy%02d_slide%02d.png",this->boyIndex, 4, 4);
 		this->slideAction = RepeatForever::create(Animate::create(slide));
 
 		return true;
@@ -62,9 +62,10 @@ void BoySprite::die() {
 Animation* BoySprite::createAnimation(const char *fmt, int boyIndex, int count, float fps) {
     Animation *animation = Animation::create();
     animation->setDelayPerUnit(1/fps);
-	for (int i = 0; i < count; i++){
-		const char *filename = String::createWithFormat(fmt, boyIndex, i)->getCString();
-		SpriteFrame *frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(filename);
+	for (int i = 1; i <= count; i++){
+		char name[50] = {0};
+		sprintf(name, fmt, boyIndex, i);
+		SpriteFrame *frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(name);
 		animation->addSpriteFrame(frame);
 	}
 	return animation;

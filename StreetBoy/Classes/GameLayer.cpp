@@ -6,9 +6,13 @@ GameLayer::~GameLayer(){}
 
 bool GameLayer::init() {
 	if(Layer::init()) {
+		// add ground
 		initGround();
 		groundShift = schedule_selector(GameLayer::scrollGround);
-		 this->schedule(groundShift, 0.01f);
+		this->schedule(groundShift, 0.01f);
+
+		// add the boy
+		initBoy();
 		return true;
 	}else {
 		return false;
@@ -22,6 +26,14 @@ void GameLayer::onTouchLeft() {
 void GameLayer::onTouchRight() {
 	// boy jump
 }
+
+void GameLayer::initBoy() {
+	boy = BoySprite::getInstance();
+	boy->setPosition(GAME_BOY_POSITION_X, ground1->getPositionY() + ground1->getContentSize().height + boy->getContentSize().height/2);
+	boy->run();
+	this->addChild(boy);
+}
+
 
 void GameLayer::initGround() {
 	ground1 = SPRITE("road01.png");

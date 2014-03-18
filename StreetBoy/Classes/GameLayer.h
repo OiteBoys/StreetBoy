@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include "Constant.h"
 #include "OptionLayer.h"
+#include "BoySprite.h"
 
 using namespace cocos2d;
 
@@ -29,4 +30,8 @@ private:
 	SEL_SCHEDULE groundShift;
 	void initGround();
 	void scrollGround(float dt);
+
+	// boys
+	BoySprite* boy;
+	void initBoy();
 };
