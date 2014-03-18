@@ -1,5 +1,6 @@
 #pragma once
 #include "cocos2d.h"
+#include "Constant.h"
 #include "OptionLayer.h"
 
 using namespace cocos2d;
@@ -21,4 +22,11 @@ public:
 
 private:
 	PhysicsWorld *world;
+
+	// ground
+	Sprite* ground1;
+	Sprite* ground2;
+	SEL_SCHEDULE groundShift;
+	void initGround();
+	void scrollGround(float dt);
 };
