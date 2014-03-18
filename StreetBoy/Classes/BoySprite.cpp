@@ -31,6 +31,9 @@ bool BoySprite::init() {
 		auto slide = this->createAnimation("boy%02d_slide%02d.png",this->boyIndex, 4, 4);
 		this->slideAction = RepeatForever::create(Animate::create(slide));
 
+		auto jump = this->createAnimation("boy%02d_jump%02d.png",this->boyIndex, 2, 2);
+		this->jumpAction = Animate::create(jump);
+
 		return true;
 	}else {
 		return false;
@@ -50,6 +53,12 @@ void BoySprite::run() {
 void BoySprite::slide() {
 	if(changeState(ACTION_STATE_SLIDE)) {
 		this->runAction(slideAction);
+	}
+}
+
+void BoySprite::jump() {
+	if(changeState(ACTION_STATE_JUMP)) {
+		//this->runAction(jumpAction);
 	}
 }
 
@@ -75,4 +84,8 @@ bool BoySprite::changeState(ActionState state) {
     this->stopAllActions();
     currentStatus = state;
     return true;
+}
+
+ActionState BoySprite::getCurrentState() {
+	return this->currentStatus;
 }

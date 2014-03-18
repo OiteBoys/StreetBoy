@@ -8,6 +8,7 @@ using namespace std;
 typedef enum{
     ACTION_STATE_RUN,
 	ACTION_STATE_SLIDE,
+	ACTION_STATE_JUMP,
 	ACTION_STATE_DIE
 } ActionState;
 
@@ -43,24 +44,34 @@ public:
 	//CREATE_FUNC(BoySprite);
 
 	/**
-	* The bird fly with swing, but do not effected by gravity.
+	* The boy fly with swing, but do not effected by gravity.
 	*/
 	void run();
 
 	/**
-	* The bird fly drived by player, effected by gravity. need physical support.
+	* The boy fly drived by player, effected by gravity. need physical support.
 	*/
 	void slide();
 
 	/**
-	* The bird die
+	* The boy die
 	*/
 	void die();
+
+	/**
+	* The boy die
+	*/
+	void jump();
 
 	/**
 	* There are three type of boy in this game, this method can change the type
 	*/
 	void changeBoyType(int type);
+
+	/**
+	* Return current boy's status
+	*/
+	ActionState getCurrentState();
 	
 protected:
 	/**
@@ -80,6 +91,8 @@ private:
 	Action* slideAction;
 
 	Action* dieAction;
+
+	Action* jumpAction;
 
 	ActionState currentStatus;
 

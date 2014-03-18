@@ -19,5 +19,5 @@ const auto WELCOME_HELP_POSITION = Point(156.0f, 50.0f);
 const auto WELCOME_MORE_POSITION = Point(755.0f, 50.0f);
 
 // Ground height in the game scene
-const auto GAME_GROUND_HEIGHT = 50.0f;
+const auto GAME_GROUND_HEIGHT = 80.0f;
 const auto GAME_BOY_POSITION_X = 150.0f;

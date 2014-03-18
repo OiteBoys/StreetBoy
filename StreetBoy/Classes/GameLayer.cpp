@@ -25,26 +25,45 @@ void GameLayer::onTouchLeft() {
 
 void GameLayer::onTouchRight() {
 	// boy jump
+	if(boy->getCurrentState() != ActionState::ACTION_STATE_JUMP) {
+		this->boy->jump();
+		this->boy->getPhysicsBody()->setVelocity(Vect(0, 260));
+	}
 }
 
 void GameLayer::initBoy() {
 	boy = BoySprite::getInstance();
-	boy->setPosition(GAME_BOY_POSITION_X, ground1->getPositionY() + ground1->getContentSize().height + boy->getContentSize().height/2);
+	boy->setPosition(GAME_BOY_POSITION_X, ground1->getPositionY() + ground1->getContentSize().height/2 + boy->getContentSize().height/2);
 	boy->run();
+	PhysicsBody *body = PhysicsBody::create();
+	body->addShape(PhysicsShapeBox::create(boy->getContentSize()));
+    body->setDynamic(true);
+	body->setLinearDamping(0.0f);
+	boy->setPhysicsBody(body);
 	this->addChild(boy);
 }
 
 
 void GameLayer::initGround() {
 	ground1 = SPRITE("road01.png");
-	ground1->setAnchorPoint(Point::ZERO);
+	ground1->setAnchorPoint(Point(0, 0.5));
 	ground1->setPosition(0, GAME_GROUND_HEIGHT);
 	this->addChild(ground1);
 
 	ground2 = SPRITE("road01.png");
-	ground2->setAnchorPoint(Point::ZERO);
+	ground2->setAnchorPoint(Point(0, 0.5));
 	ground2->setPosition(ground1->getContentSize().width, GAME_GROUND_HEIGHT);
 	this->addChild(ground2);
+
+	Size winSize = Director::getInstance()->getWinSize();
+	auto groundNode = Node::create();
+    auto groundBody = PhysicsBody::create();
+	groundBody->addShape(PhysicsShapeBox::create(Size(winSize.width, ground1->getContentSize().height)));
+    groundBody->setDynamic(false);
+    groundBody->setLinearDamping(0.0f);
+    groundNode->setPhysicsBody(groundBody);
+	groundNode->setPosition(winSize.width/2, GAME_GROUND_HEIGHT);
+    this->addChild(groundNode);
 }
 
 void GameLayer::scrollGround(float dt){
