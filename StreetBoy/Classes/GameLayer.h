@@ -34,4 +34,6 @@ private:
 	// boys
 	BoySprite* boy;
 	void initBoy();
+
+	void update(float dt);
 };

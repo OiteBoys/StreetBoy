@@ -13,6 +13,8 @@ bool GameLayer::init() {
 
 		// add the boy
 		initBoy();
+
+		 this->scheduleUpdate();
 		return true;
 	}else {
 		return false;
@@ -25,21 +27,20 @@ void GameLayer::onTouchLeft() {
 
 void GameLayer::onTouchRight() {
 	// boy jump
-	if(boy->getCurrentState() != ActionState::ACTION_STATE_JUMP) {
-		this->boy->jump();
-		this->boy->getPhysicsBody()->setVelocity(Vect(0, 260));
+	if(boy->getCurrentState() != ActionState::ACTION_STATE_JUMP_UP || boy->getCurrentState() != ActionState::ACTION_STATE_JUMP_DOWN) {
+		this->boy->jumpUp();
+		this->boy->getPhysicsBody()->setVelocity(Vect(0, 400));
 	}
+}
+
+void GameLayer::update(float dt) {
+	this->boy->step(dt);
 }
 
 void GameLayer::initBoy() {
 	boy = BoySprite::getInstance();
 	boy->setPosition(GAME_BOY_POSITION_X, ground1->getPositionY() + ground1->getContentSize().height/2 + boy->getContentSize().height/2);
 	boy->run();
-	PhysicsBody *body = PhysicsBody::create();
-	body->addShape(PhysicsShapeBox::create(boy->getContentSize()));
-    body->setDynamic(true);
-	body->setLinearDamping(0.0f);
-	boy->setPhysicsBody(body);
 	this->addChild(boy);
 }
 

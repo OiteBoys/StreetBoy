@@ -8,10 +8,19 @@ using namespace std;
 typedef enum{
     ACTION_STATE_RUN,
 	ACTION_STATE_SLIDE,
-	ACTION_STATE_JUMP,
+	ACTION_STATE_JUMP_UP,
+	ACTION_STATE_JUMP_DOWN,
 	ACTION_STATE_DIE
 } ActionState;
 
+// define the action tag
+const int ACTION_STATE_RUN_TAG = 100;
+const int ACTION_STATE_SLIDE_TAG = 101;
+const int ACTION_STATE_JUMP_UP_TAG = 102;
+const int ACTION_STATE_JUMP_DOWN_TAG = 103;
+const int ACTION_STATE_DIE_TAG = 104;
+
+// define the sprite tag
 const int BOY_SPRITE_TAG = 10003;
 
 class BoySprite : public Sprite {
@@ -59,9 +68,14 @@ public:
 	void die();
 
 	/**
-	* The boy die
+	* The boy jump
 	*/
-	void jump();
+	void jumpUp();
+
+	/**
+	* The boy jump
+	*/
+	void jumpDown();
 
 	/**
 	* There are three type of boy in this game, this method can change the type
@@ -72,6 +86,11 @@ public:
 	* Return current boy's status
 	*/
 	ActionState getCurrentState();
+
+	/**
+	* need to called in the main loop, the change of boy drived by time
+	*/
+	void step(float dt);
 	
 protected:
 	/**
@@ -92,7 +111,9 @@ private:
 
 	Action* dieAction;
 
-	Action* jumpAction;
+	Action* jumpUpAction;
+
+	Action* jumpDownAction;
 
 	ActionState currentStatus;
 
