@@ -23,6 +23,9 @@ bool GameLayer::init() {
 
 void GameLayer::onTouchLeft() {
 	// boy slide
+	if(boy->getCurrentState() != ActionState::ACTION_STATE_SLIDE) {
+		this->boy->slide();
+	}
 }
 
 void GameLayer::onTouchRight() {

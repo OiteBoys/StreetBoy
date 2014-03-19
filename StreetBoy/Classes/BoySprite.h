@@ -23,6 +23,10 @@ const int ACTION_STATE_DIE_TAG = 104;
 // define the sprite tag
 const int BOY_SPRITE_TAG = 10003;
 
+// define the hero shape
+#define NORMAL_SHAPE  PhysicsShapeBox::create(Size(40, 58))
+#define SLIDE_SHAPE  PhysicsShapeBox::create(Size(47, 23))
+
 class BoySprite : public Sprite {
 public:
 	/**
@@ -104,6 +108,11 @@ private:
 	* This method change current status. called by fly and idle etc.
 	*/
 	bool changeState(ActionState state);
+
+	/**
+	* manage the shape of the hero
+	*/
+	void changeShape();
 
 	Action* runningAction;
 

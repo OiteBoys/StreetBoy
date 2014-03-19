@@ -50,6 +50,14 @@ bool BoySprite::init() {
 		this->jumpDownAction->setTag(ACTION_STATE_JUMP_DOWN_TAG);
 		this->jumpDownAction->retain();
 
+		// add the physical body
+		PhysicsBody *body = PhysicsBody::create();
+		body->addShape(NORMAL_SHAPE);
+		body->setDynamic(true);
+		body->setLinearDamping(0.0f);
+		body->setRotationEnable(false);
+		this->setPhysicsBody(body);
+
 		return true;
 	}else {
 		return false;
@@ -59,39 +67,48 @@ bool BoySprite::init() {
 void BoySprite::changeBoyType(int type) {
 }
 
+void BoySprite::changeShape(){
+	if(this->getPhysicsBody() == nullptr){
+		return;
+	}
+
+	auto body = this->getPhysicsBody();
+	body->removeAllShapes();
+	if(this->getCurrentState() == ACTION_STATE_RUN) {
+		body->addShape(NORMAL_SHAPE);
+	}else if(this->getCurrentState() == ACTION_STATE_SLIDE){
+		body->addShape(SLIDE_SHAPE);
+	}else if(this->getCurrentState() == ACTION_STATE_JUMP_UP){
+		body->addShape(NORMAL_SHAPE);
+	}else if(this->getCurrentState() == ACTION_STATE_JUMP_DOWN){
+		body->addShape(NORMAL_SHAPE);
+	}
+}
 
 void BoySprite::run() {
 	if (changeState(ACTION_STATE_RUN)) {
-		if(this->getPhysicsBody() == nullptr){
-			PhysicsBody *body = PhysicsBody::create();
-			body->addShape(PhysicsShapeBox::create(this->getContentSize()));
-			body->setDynamic(true);
-			body->setLinearDamping(0.0f);
-			body->setRotationEnable(false);
-			this->setPhysicsBody(body);
-		}else {
-			auto body = this->getPhysicsBody();
-			body->removeAllShapes();
-			body->addShape(PhysicsShapeBox::create(this->getContentSize()));
-		}
+		this->changeShape();
         this->runAction(runningAction);
     }
 }
 
 void BoySprite::slide() {
 	if(changeState(ACTION_STATE_SLIDE)) {
+		this->changeShape();
 		this->runAction(slideAction);
 	}
 }
 
 void BoySprite::jumpUp() {
 	if(changeState(ACTION_STATE_JUMP_UP)) {
+		this->changeShape();
 		this->runAction(jumpUpAction);
 	}
 }
 
 void BoySprite::jumpDown() {
 	if(changeState(ACTION_STATE_JUMP_DOWN)) {
+		this->changeShape();
 		this->runAction(jumpDownAction);
 	}
 }
