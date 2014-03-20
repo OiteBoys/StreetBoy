@@ -14,11 +14,43 @@ bool GameLayer::init() {
 		// add the boy
 		initBoy();
 
+		// init the objects
+		objectManager = ObjectManager::create();
+		this->obstacles = objectManager->generalObstacles();
+		this->lastPositionX = this->obstacles.at(this->obstacles.size() - 1)->getPositionX();
+		for(auto object : obstacles) {
+			object->setTag(1);
+			this->addChild(object);
+		}
+
 		 this->scheduleUpdate();
+
+		 auto contactListener = EventListenerPhysicsContact::create();
+		contactListener->onContactBegin = CC_CALLBACK_2(GameLayer::onContactBegin, this);
+		this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);
 		return true;
 	}else {
 		return false;
 	}
+}
+
+bool GameLayer::onContactBegin(EventCustom *event, const PhysicsContact& contact) {
+	auto spriteA = (Sprite*)contact.getShapeA()->getBody()->getNode();
+    auto spriteB = (Sprite*)contact.getShapeB()->getBody()->getNode();
+
+	if (spriteA->getTag() == 1 && spriteB->getTag() == 3){
+		gameOver();
+    }
+
+	if (spriteB->getTag() == 1 && spriteA->getTag() == 3){
+        gameOver();
+    }
+
+	return true;
+}
+
+void GameLayer::gameOver() {
+	this->unschedule(groundShift);
 }
 
 void GameLayer::onTouchLeft() {
@@ -32,7 +64,7 @@ void GameLayer::onTouchRight() {
 	// boy jump
 	if(boy->getCurrentState() != ActionState::ACTION_STATE_JUMP_UP || boy->getCurrentState() != ActionState::ACTION_STATE_JUMP_DOWN) {
 		this->boy->jumpUp();
-		this->boy->getPhysicsBody()->setVelocity(Vect(0, 400));
+		this->boy->getPhysicsBody()->setVelocity(Vect(0, 300));
 	}
 }
 
@@ -42,6 +74,7 @@ void GameLayer::update(float dt) {
 
 void GameLayer::initBoy() {
 	boy = BoySprite::getInstance();
+	boy->setTag(3);
 	boy->setPosition(GAME_BOY_POSITION_X, ground1->getPositionY() + ground1->getContentSize().height/2 + boy->getContentSize().height/2);
 	boy->run();
 	this->addChild(boy);
@@ -61,6 +94,7 @@ void GameLayer::initGround() {
 
 	Size winSize = Director::getInstance()->getWinSize();
 	auto groundNode = Node::create();
+	groundNode->setTag(2);
     auto groundBody = PhysicsBody::create();
 	groundBody->addShape(PhysicsShapeBox::create(Size(winSize.width, ground1->getContentSize().height)));
     groundBody->setDynamic(false);
@@ -71,9 +105,22 @@ void GameLayer::initGround() {
 }
 
 void GameLayer::scrollGround(float dt){
+	Size winSize = Director::getInstance()->getWinSize();
 	this->ground1->setPositionX(this->ground1->getPositionX() - 4.0f);
 	this->ground2->setPositionX(this->ground1->getPositionX() + this->ground1->getContentSize().width - 4.0f);
 	if(this->ground2->getPositionX() == 0) {
 		this->ground1->setPositionX(0);
+	}
+
+	this->lastPositionX -= 4;
+	for(auto obstacle: this->obstacles) {
+		obstacle->setPositionX(obstacle->getPositionX() - 4.0f);
+		if(obstacle->getPositionX() < - obstacle->getContentSize().width) {
+			/*obstacle->removeFromParent();
+			this->obstacles.eraseObject(obstacle);*/
+			obstacle->setPosition(lastPositionX + ObstacleSpace + obstacle->getContentSize().width, ObstacleYPosition + obstacle->getContentSize().height/2);
+			lastPositionX = obstacle->getPositionX();
+			//this->obstacles.pushBack(obs);
+		}
 	}
 }

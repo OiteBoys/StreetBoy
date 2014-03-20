@@ -3,6 +3,7 @@
 #include "Constant.h"
 #include "OptionLayer.h"
 #include "BoySprite.h"
+#include "ObjectManager.h"
 
 using namespace cocos2d;
 
@@ -36,4 +37,12 @@ private:
 	void initBoy();
 
 	void update(float dt);
+
+	ObjectManager *objectManager;
+	Vector<Sprite*> obstacles;
+	float lastPositionX;
+
+	bool onContactBegin(EventCustom *event, const PhysicsContact& contact);
+
+	void gameOver();
 };
