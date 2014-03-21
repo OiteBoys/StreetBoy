@@ -4,6 +4,7 @@
 using namespace cocos2d;
 using namespace std;
 
+
 class BackgroundLayer:public Layer{
 public:
 	BackgroundLayer(void);
@@ -14,10 +15,16 @@ public:
     
 	CREATE_FUNC(BackgroundLayer);
 
+	void stop();
+
+	void restart();
+
 private:
 	void scrollBackground(float dt);
 
 	Sprite* background1;
 
 	Sprite* background2;
+
+	SEL_SCHEDULE backgroundShift;
 };

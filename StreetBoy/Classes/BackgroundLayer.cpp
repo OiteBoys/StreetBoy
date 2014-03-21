@@ -26,7 +26,8 @@ bool BackgroundLayer::init(){
 	this->addChild(background2);
 
 	// scroll the background
-    this->schedule(schedule_selector(BackgroundLayer::scrollBackground), 0.01f);
+	backgroundShift = schedule_selector(BackgroundLayer::scrollBackground);
+    this->schedule(backgroundShift, 0.01f);
 	return true;
 }
 
@@ -36,4 +37,12 @@ void BackgroundLayer::scrollBackground(float dt){
 	if(this->background2->getPositionX() == 0) {
 		this->background1->setPositionX(0);
 	}
+}
+
+void BackgroundLayer::stop() {
+	this->unschedule(backgroundShift);
+}
+
+void BackgroundLayer::restart() {
+	this->schedule(backgroundShift, 0.01f);
 }

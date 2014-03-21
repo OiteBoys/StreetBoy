@@ -7,6 +7,30 @@
 
 using namespace cocos2d;
 
+typedef enum _game_status {
+	GAME_STATUS_READY = 1,
+	GAME_STATUS_START,
+	GAME_STATUS_OVER
+} GameStatus;
+
+class StatusDelegate {
+public:
+	/**
+	* When the game start, this method will be called
+	*/
+	virtual void onGameStart(void) = 0;
+
+	/**
+	* During paying, after the score changed, this method will be called
+	*/
+	virtual void onGamePlaying(int score) = 0;
+
+	/**
+	* When game is over, this method will be called
+	*/
+	virtual void onGameEnd(int score) = 0;
+};
+
 class GameLayer : public Layer , public OptionDelegate {
 public:
 	GameLayer();
@@ -21,6 +45,11 @@ public:
 
 	void onTouchLeft();
 	void onTouchRight();
+
+	/**
+	* According to current game status, give the order to delegate.
+	*/
+	CC_SYNTHESIZE(StatusDelegate*, delegator, Delegator);
 
 private:
 	PhysicsWorld *world;
@@ -45,4 +74,6 @@ private:
 	bool onContactBegin(EventCustom *event, const PhysicsContact& contact);
 
 	void gameOver();
+
+	int score;
 };

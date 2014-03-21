@@ -7,7 +7,7 @@ GameScene::~GameScene() {}
 bool GameScene::init() {
 	if(Scene::initWithPhysics()) {
 		// Add the background
-		auto backgroundLayer = BackgroundLayer::create();
+		backgroundLayer = BackgroundLayer::create();
 		if(backgroundLayer) {
 			this->addChild(backgroundLayer);
 		}
@@ -18,6 +18,7 @@ bool GameScene::init() {
 		this->gameLayer = GameLayer::create();
 		if(gameLayer) {
 			gameLayer->setPhyWorld(this->getPhysicsWorld());
+			gameLayer->setDelegator(this);
 			this->addChild(gameLayer);
 		}
 
@@ -32,4 +33,14 @@ bool GameScene::init() {
 	}else {
 		return false;
 	}
+}
+
+void GameScene::onGameStart() {
+}
+
+void GameScene::onGamePlaying(int score) {
+}
+
+void GameScene::onGameEnd(int score) {
+	this->backgroundLayer->stop();
 }

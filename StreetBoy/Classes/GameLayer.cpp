@@ -6,6 +6,9 @@ GameLayer::~GameLayer(){}
 
 bool GameLayer::init() {
 	if(Layer::init()) {
+		// init value
+		this->score = 0;
+
 		// add ground
 		initGround();
 		groundShift = schedule_selector(GameLayer::scrollGround);
@@ -51,6 +54,7 @@ bool GameLayer::onContactBegin(EventCustom *event, const PhysicsContact& contact
 
 void GameLayer::gameOver() {
 	this->unschedule(groundShift);
+	this->delegator->onGameEnd(this->score);
 }
 
 void GameLayer::onTouchLeft() {
