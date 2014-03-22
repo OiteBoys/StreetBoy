@@ -62,6 +62,18 @@
 		50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF629517ECD46A001EB2F8 /* Icon-100.png */; };
 		50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A017ECD613001EB2F8 /* Icon-29.png */; };
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
+		51E39BB418DD2DF40086C64C /* BackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51E39BA118DD2DF40086C64C /* BackgroundLayer.cpp */; };
+		51E39BB518DD2DF40086C64C /* BoySprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51E39BA318DD2DF40086C64C /* BoySprite.cpp */; };
+		51E39BB618DD2DF40086C64C /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51E39BA618DD2DF40086C64C /* GameLayer.cpp */; };
+		51E39BB718DD2DF40086C64C /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51E39BA818DD2DF40086C64C /* GameScene.cpp */; };
+		51E39BB818DD2DF40086C64C /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51E39BAA18DD2DF40086C64C /* LoadingScene.cpp */; };
+		51E39BB918DD2DF40086C64C /* ObjectManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51E39BAC18DD2DF40086C64C /* ObjectManager.cpp */; };
+		51E39BBA18DD2DF40086C64C /* OptionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51E39BAE18DD2DF40086C64C /* OptionLayer.cpp */; };
+		51E39BBB18DD2DF40086C64C /* WelcomeLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51E39BB018DD2DF40086C64C /* WelcomeLayer.cpp */; };
+		51E39BBC18DD2DF40086C64C /* WelcomeScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51E39BB218DD2DF40086C64C /* WelcomeScene.cpp */; };
+		51E39BC018DD2FA40086C64C /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 51E39BBD18DD2FA40086C64C /* loading.png */; };
+		51E39BC118DD2FA40086C64C /* street_boy.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51E39BBE18DD2FA40086C64C /* street_boy.plist */; };
+		51E39BC218DD2FA40086C64C /* street_boy.png in Resources */ = {isa = PBXBuildFile; fileRef = 51E39BBF18DD2FA40086C64C /* street_boy.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -288,6 +300,28 @@
 		50EF629517ECD46A001EB2F8 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		50EF62A017ECD613001EB2F8 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		50EF62A117ECD613001EB2F8 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
+		51E39BA118DD2DF40086C64C /* BackgroundLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BackgroundLayer.cpp; path = ../Classes/BackgroundLayer.cpp; sourceTree = "<group>"; };
+		51E39BA218DD2DF40086C64C /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundLayer.h; path = ../Classes/BackgroundLayer.h; sourceTree = "<group>"; };
+		51E39BA318DD2DF40086C64C /* BoySprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoySprite.cpp; path = ../Classes/BoySprite.cpp; sourceTree = "<group>"; };
+		51E39BA418DD2DF40086C64C /* BoySprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoySprite.h; path = ../Classes/BoySprite.h; sourceTree = "<group>"; };
+		51E39BA518DD2DF40086C64C /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constant.h; path = ../Classes/Constant.h; sourceTree = "<group>"; };
+		51E39BA618DD2DF40086C64C /* GameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameLayer.cpp; path = ../Classes/GameLayer.cpp; sourceTree = "<group>"; };
+		51E39BA718DD2DF40086C64C /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = ../Classes/GameLayer.h; sourceTree = "<group>"; };
+		51E39BA818DD2DF40086C64C /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/GameScene.cpp; sourceTree = "<group>"; };
+		51E39BA918DD2DF40086C64C /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = ../Classes/GameScene.h; sourceTree = "<group>"; };
+		51E39BAA18DD2DF40086C64C /* LoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoadingScene.cpp; path = ../Classes/LoadingScene.cpp; sourceTree = "<group>"; };
+		51E39BAB18DD2DF40086C64C /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingScene.h; path = ../Classes/LoadingScene.h; sourceTree = "<group>"; };
+		51E39BAC18DD2DF40086C64C /* ObjectManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectManager.cpp; path = ../Classes/ObjectManager.cpp; sourceTree = "<group>"; };
+		51E39BAD18DD2DF40086C64C /* ObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectManager.h; path = ../Classes/ObjectManager.h; sourceTree = "<group>"; };
+		51E39BAE18DD2DF40086C64C /* OptionLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OptionLayer.cpp; path = ../Classes/OptionLayer.cpp; sourceTree = "<group>"; };
+		51E39BAF18DD2DF40086C64C /* OptionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionLayer.h; path = ../Classes/OptionLayer.h; sourceTree = "<group>"; };
+		51E39BB018DD2DF40086C64C /* WelcomeLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WelcomeLayer.cpp; path = ../Classes/WelcomeLayer.cpp; sourceTree = "<group>"; };
+		51E39BB118DD2DF40086C64C /* WelcomeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeLayer.h; path = ../Classes/WelcomeLayer.h; sourceTree = "<group>"; };
+		51E39BB218DD2DF40086C64C /* WelcomeScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WelcomeScene.cpp; path = ../Classes/WelcomeScene.cpp; sourceTree = "<group>"; };
+		51E39BB318DD2DF40086C64C /* WelcomeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeScene.h; path = ../Classes/WelcomeScene.h; sourceTree = "<group>"; };
+		51E39BBD18DD2FA40086C64C /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		51E39BBE18DD2FA40086C64C /* street_boy.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = street_boy.plist; sourceTree = "<group>"; };
+		51E39BBF18DD2FA40086C64C /* street_boy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = street_boy.png; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -364,6 +398,25 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				51E39BA118DD2DF40086C64C /* BackgroundLayer.cpp */,
+				51E39BA218DD2DF40086C64C /* BackgroundLayer.h */,
+				51E39BA318DD2DF40086C64C /* BoySprite.cpp */,
+				51E39BA418DD2DF40086C64C /* BoySprite.h */,
+				51E39BA518DD2DF40086C64C /* Constant.h */,
+				51E39BA618DD2DF40086C64C /* GameLayer.cpp */,
+				51E39BA718DD2DF40086C64C /* GameLayer.h */,
+				51E39BA818DD2DF40086C64C /* GameScene.cpp */,
+				51E39BA918DD2DF40086C64C /* GameScene.h */,
+				51E39BAA18DD2DF40086C64C /* LoadingScene.cpp */,
+				51E39BAB18DD2DF40086C64C /* LoadingScene.h */,
+				51E39BAC18DD2DF40086C64C /* ObjectManager.cpp */,
+				51E39BAD18DD2DF40086C64C /* ObjectManager.h */,
+				51E39BAE18DD2DF40086C64C /* OptionLayer.cpp */,
+				51E39BAF18DD2DF40086C64C /* OptionLayer.h */,
+				51E39BB018DD2DF40086C64C /* WelcomeLayer.cpp */,
+				51E39BB118DD2DF40086C64C /* WelcomeLayer.h */,
+				51E39BB218DD2DF40086C64C /* WelcomeScene.cpp */,
+				51E39BB318DD2DF40086C64C /* WelcomeScene.h */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,
@@ -487,6 +540,9 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				51E39BBD18DD2FA40086C64C /* loading.png */,
+				51E39BBE18DD2FA40086C64C /* street_boy.plist */,
+				51E39BBF18DD2FA40086C64C /* street_boy.png */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
 				1AFAF8BB16D35E4900DB1158 /* HelloWorld.png */,
@@ -687,7 +743,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51E39BC018DD2FA40086C64C /* loading.png in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
+				51E39BC118DD2FA40086C64C /* street_boy.plist in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
@@ -696,6 +754,7 @@
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
+				51E39BC218DD2FA40086C64C /* street_boy.png in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
@@ -728,10 +787,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				51E39BBB18DD2DF40086C64C /* WelcomeLayer.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				51E39BBC18DD2DF40086C64C /* WelcomeScene.cpp in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
+				51E39BB618DD2DF40086C64C /* GameLayer.cpp in Sources */,
+				51E39BBA18DD2DF40086C64C /* OptionLayer.cpp in Sources */,
+				51E39BB418DD2DF40086C64C /* BackgroundLayer.cpp in Sources */,
+				51E39BB718DD2DF40086C64C /* GameScene.cpp in Sources */,
+				51E39BB518DD2DF40086C64C /* BoySprite.cpp in Sources */,
+				51E39BB918DD2DF40086C64C /* ObjectManager.cpp in Sources */,
+				51E39BB818DD2DF40086C64C /* LoadingScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
