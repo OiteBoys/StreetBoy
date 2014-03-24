@@ -3,6 +3,7 @@
 #include "GameLayer.h"
 #include "OptionLayer.h"
 #include "BackgroundLayer.h"
+#include "StatusLayer.h"
 
 using namespace cocos2d;
 
@@ -32,4 +33,5 @@ private:
 	GameLayer *gameLayer;
 	OptionLayer *optionLayer;
 	BackgroundLayer* backgroundLayer;
+	StatusLayer* statusLayer;
 };

@@ -13,7 +13,7 @@ bool GameScene::init() {
 		}
 
 		// Add the game layer
-		this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+		//this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 		this->getPhysicsWorld()->setGravity(Vect(0, -900));
 		this->gameLayer = GameLayer::create();
 		if(gameLayer) {
@@ -29,6 +29,11 @@ bool GameScene::init() {
 			this->addChild(optionLayer);
 		}
 
+		this->statusLayer = StatusLayer::create();
+		if(statusLayer) {
+			this->addChild(statusLayer);
+		}
+		statusLayer->start();
 		return true;
 	}else {
 		return false;
@@ -36,11 +41,14 @@ bool GameScene::init() {
 }
 
 void GameScene::onGameStart() {
+	statusLayer->start();
 }
 
 void GameScene::onGamePlaying(int score) {
+	statusLayer->playing(score);
 }
 
 void GameScene::onGameEnd(int score) {
+	statusLayer->gameOver(score);
 	this->backgroundLayer->stop();
 }

@@ -40,8 +40,9 @@ Vector<Sprite*> ObjectManager::generalObstacles(int number) {
 	auto obstacles = Vector<Sprite*>(10);
 	Size winSize = Director::getInstance()->getWinSize();
 	for(int i=0;i<number;i++) {
+		float height = (rand()%2)*ObstacleOverHeight;
 		auto obstacle = this->createObstacle();
-		obstacle->setPosition(winSize.width + i*ObstacleSpace + obstacle->getContentSize().width, ObstacleYPosition + obstacle->getContentSize().height/2);
+		obstacle->setPosition(winSize.width + i*ObstacleSpace + obstacle->getContentSize().width, ObstacleYPosition + obstacle->getContentSize().height/2 + height);
 		obstacle->retain();
 		obstacles.pushBack(obstacle);
 	}

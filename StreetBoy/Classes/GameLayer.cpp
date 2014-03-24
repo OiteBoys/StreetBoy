@@ -27,14 +27,22 @@ bool GameLayer::init() {
 		}
 
 		 this->scheduleUpdate();
+		 scoreCount = schedule_selector(GameLayer::scoreCounter);
+		 this->schedule(scoreCount, 0.1f);
 
 		 auto contactListener = EventListenerPhysicsContact::create();
 		contactListener->onContactBegin = CC_CALLBACK_2(GameLayer::onContactBegin, this);
 		this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);
+		//this->delegator->onGameStart();
 		return true;
 	}else {
 		return false;
 	}
+}
+
+void GameLayer::scoreCounter(float dt) {
+	this->score ++;
+	this->delegator->onGamePlaying(this->score);
 }
 
 bool GameLayer::onContactBegin(EventCustom *event, const PhysicsContact& contact) {
@@ -53,8 +61,14 @@ bool GameLayer::onContactBegin(EventCustom *event, const PhysicsContact& contact
 }
 
 void GameLayer::gameOver() {
+	for(auto object : obstacles) {
+		object->getPhysicsBody()->setEnable(false);	
+	}
 	this->unschedule(groundShift);
+	this->unschedule(scoreCount);
 	this->delegator->onGameEnd(this->score);
+	this->groundNode->getPhysicsBody()->setEnable(false);
+	this->boy->die();
 }
 
 void GameLayer::onTouchLeft() {
@@ -66,7 +80,7 @@ void GameLayer::onTouchLeft() {
 
 void GameLayer::onTouchRight() {
 	// boy jump
-	if(boy->getCurrentState() != ActionState::ACTION_STATE_JUMP_UP || boy->getCurrentState() != ActionState::ACTION_STATE_JUMP_DOWN) {
+	if(boy->getCurrentState() != ActionState::ACTION_STATE_JUMP_UP && boy->getCurrentState() != ActionState::ACTION_STATE_JUMP_DOWN) {
 		this->boy->jumpUp();
 		this->boy->getPhysicsBody()->setVelocity(Vect(0, 300));
 	}
@@ -78,6 +92,8 @@ void GameLayer::update(float dt) {
 
 void GameLayer::initBoy() {
 	boy = BoySprite::getInstance();
+	boy->removeFromParent();
+	boy->setPhysical();
 	boy->setTag(3);
 	boy->setPosition(GAME_BOY_POSITION_X, ground1->getPositionY() + ground1->getContentSize().height/2 + boy->getContentSize().height/2);
 	boy->run();
@@ -86,6 +102,7 @@ void GameLayer::initBoy() {
 
 
 void GameLayer::initGround() {
+	Size winSize = Director::getInstance()->getWinSize();
 	ground1 = SPRITE("road01.png");
 	ground1->setAnchorPoint(Point(0, 0.5));
 	ground1->setPosition(0, GAME_GROUND_HEIGHT);
@@ -96,8 +113,17 @@ void GameLayer::initGround() {
 	ground2->setPosition(ground1->getContentSize().width, GAME_GROUND_HEIGHT);
 	this->addChild(ground2);
 
-	Size winSize = Director::getInstance()->getWinSize();
-	auto groundNode = Node::create();
+	top1 = SPRITE("road02.png");
+	top1->setAnchorPoint(Point(0, 1));
+	top1->setPosition(0, winSize.height);
+	this->addChild(top1);
+
+	top2 = SPRITE("road02.png");
+	top2->setAnchorPoint(Point(0, 1));
+	top2->setPosition(top1->getContentSize().width, winSize.height);
+	this->addChild(top2);
+
+	groundNode = Node::create();
 	groundNode->setTag(2);
     auto groundBody = PhysicsBody::create();
 	groundBody->addShape(PhysicsShapeBox::create(Size(winSize.width, ground1->getContentSize().height)));
@@ -116,13 +142,20 @@ void GameLayer::scrollGround(float dt){
 		this->ground1->setPositionX(0);
 	}
 
+	this->top1->setPositionX(this->top1->getPositionX() - 4.0f);
+	this->top2->setPositionX(this->top1->getPositionX() + this->top1->getContentSize().width - 4.0f);
+	if(this->top2->getPositionX() == 0) {
+		this->top1->setPositionX(0);
+	}
+
 	this->lastPositionX -= 4;
 	for(auto obstacle: this->obstacles) {
 		obstacle->setPositionX(obstacle->getPositionX() - 4.0f);
 		if(obstacle->getPositionX() < - obstacle->getContentSize().width) {
 			/*obstacle->removeFromParent();
 			this->obstacles.eraseObject(obstacle);*/
-			obstacle->setPosition(lastPositionX + ObstacleSpace + obstacle->getContentSize().width, ObstacleYPosition + obstacle->getContentSize().height/2);
+			float height = (rand()%2)*ObstacleOverHeight;
+			obstacle->setPosition(lastPositionX + ObstacleSpace + obstacle->getContentSize().width, ObstacleYPosition + obstacle->getContentSize().height/2 + height);
 			lastPositionX = obstacle->getPositionX();
 			//this->obstacles.pushBack(obs);
 		}

@@ -8,6 +8,7 @@ BoySprite::~BoySprite() {
 	this->slideAction->release();
 	this->jumpUpAction->release();
 	this->jumpDownAction->release();
+	this->dieAction->release();
 }
 
 BoySprite* BoySprite::shareBoySprite = nullptr;
@@ -21,6 +22,7 @@ BoySprite* BoySprite::getInstance(){
 			CCLOG("ERROR: Could not init shareBoySprite");
 		}
 	}
+	shareBoySprite->getPhysicsBody()->setEnable(true);
 	return shareBoySprite;
 }
 
@@ -50,18 +52,25 @@ bool BoySprite::init() {
 		this->jumpDownAction->setTag(ACTION_STATE_JUMP_DOWN_TAG);
 		this->jumpDownAction->retain();
 
-		// add the physical body
-		PhysicsBody *body = PhysicsBody::create();
-		body->addShape(NORMAL_SHAPE);
-		body->setDynamic(true);
-		body->setLinearDamping(0.0f);
-		body->setRotationEnable(false);
-		this->setPhysicsBody(body);
+		this->dieAction = RotateBy::create(0.1f, -45);
+		dieAction->retain();
+
+		this->setPhysical();
 
 		return true;
 	}else {
 		return false;
 	}
+}
+
+void BoySprite::setPhysical() {
+	// add the physical body
+	PhysicsBody *body = PhysicsBody::create();
+	body->addShape(NORMAL_SHAPE);
+	body->setDynamic(true);
+	body->setLinearDamping(0.0f);
+	body->setRotationEnable(false);
+	this->setPhysicsBody(body);
 }
 
 void BoySprite::changeBoyType(int type) {
@@ -115,7 +124,8 @@ void BoySprite::jumpDown() {
 
 void BoySprite::die() {
 	if(changeState(ACTION_STATE_DIE)) {
-		this->stopAllActions();
+		//this->setAnchorPoint(Point(1, 0));
+		this->runAction(this->dieAction);
 	}
 }
 
@@ -128,6 +138,11 @@ void BoySprite::step(float dt) {
 	}else if(this->currentStatus == ACTION_STATE_JUMP_DOWN) {
 		if((this->getPositionY() <= (27 + GAME_GROUND_HEIGHT + this->getContentSize().height/2 + 3)) && vel.y < 0.01 ){
 			this->run();
+		}
+	}else if(this->currentStatus == ACTION_STATE_DIE) {
+		if(this->getPositionY() < 0) {
+			this->getPhysicsBody()->setEnable(false);
+			this->removeFromParent();
 		}
 	}
 }

@@ -21,3 +21,10 @@ const auto WELCOME_MORE_POSITION = Point(755.0f, 50.0f);
 // Ground height in the game scene
 const auto GAME_GROUND_HEIGHT = 80.0f;
 const auto GAME_BOY_POSITION_X = 150.0f;
+
+// Game over
+const auto GAME_OVER_SCORE_POSITION = Point(0, 120);
+const auto GAME_OVER_DISTANCE_POSITION = Point(-134, 40);
+const auto GAME_OVER_BEST_POSITION = Point(-136, -40);
+const auto GAME_OVER_DISTANCE_VALUE_POSITION = Point(155, 40);
+const auto GAME_OVER_BEST_VALUE_POSITION = Point(155, -40);

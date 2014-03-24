@@ -54,10 +54,15 @@ public:
 private:
 	PhysicsWorld *world;
 
+	void scoreCounter(float dt);
+
 	// ground
 	Sprite* ground1;
 	Sprite* ground2;
+	Sprite* top1;
+	Sprite* top2;
 	SEL_SCHEDULE groundShift;
+	SEL_SCHEDULE scoreCount;
 	void initGround();
 	void scrollGround(float dt);
 
@@ -76,4 +81,6 @@ private:
 	void gameOver();
 
 	int score;
+
+	Node* groundNode;
 };

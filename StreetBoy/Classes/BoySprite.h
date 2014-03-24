@@ -95,6 +95,8 @@ public:
 	* need to called in the main loop, the change of boy drived by time
 	*/
 	void step(float dt);
+
+	void setPhysical();
 	
 protected:
 	/**
