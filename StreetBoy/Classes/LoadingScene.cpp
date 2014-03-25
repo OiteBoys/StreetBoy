@@ -27,8 +27,8 @@ void LoadingScene::onEnter(){
 }
 
 void LoadingScene::loadingCallBack(Texture2D *texture){
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("boy.plist","boy.png");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("street_boy.plist", texture);
-
 	// After loading the texture , preload all the sound
 
 	// After load all the things, change the scene to new one

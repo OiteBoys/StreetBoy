@@ -29,25 +29,26 @@ BoySprite* BoySprite::getInstance(){
 bool BoySprite::init() {
 	char name[50] = {0};
 	this->boyIndex = 1;
-	sprintf(name, "boy%02d_run01.png", this->boyIndex);
+	// add the this->boyIndex if there are more than one boys
+	sprintf(name, "run0000.png");
 	if(Sprite::initWithSpriteFrame(SPRITE_FRAME(name))) {
-		auto running = this->createAnimation("boy%02d_run%02d.png",this->boyIndex, 8, 8);
+		auto running = this->createAnimation("run00%02d.png",this->boyIndex, 15, 4);
 		this->runningAction = RepeatForever::create(Animate::create(running));
 		this->runningAction->setTag(ACTION_STATE_RUN_TAG);
 		// void released by system
 		this->runningAction->retain();
 
-		auto slide = this->createAnimation("boy%02d_slide%02d.png",this->boyIndex, 4, 4);
+		auto slide = this->createAnimation("slide00%02d.png",this->boyIndex, 15, 4);
 		this->slideAction = RepeatForever::create(Animate::create(slide));
 		this->slideAction->setTag(ACTION_STATE_SLIDE_TAG);
 		this->slideAction->retain();
 
-		auto jumpUp = this->createAnimation("boy%02d_jump01.png",this->boyIndex, 1, 1);
+		auto jumpUp = this->createAnimation("jump0100%02d.png",this->boyIndex, 10, 2);
 		this->jumpUpAction = Animate::create(jumpUp);
 		this->jumpUpAction->setTag(ACTION_STATE_JUMP_UP_TAG);
 		this->jumpUpAction->retain();
 
-		auto jumpDown = this->createAnimation("boy%02d_jump02.png",this->boyIndex, 1, 1);
+		auto jumpDown = this->createAnimation("jump0200%0d.png",this->boyIndex, 12, 2);
 		this->jumpDownAction = Animate::create(jumpDown);
 		this->jumpDownAction->setTag(ACTION_STATE_JUMP_DOWN_TAG);
 		this->jumpDownAction->retain();
@@ -150,9 +151,10 @@ void BoySprite::step(float dt) {
 Animation* BoySprite::createAnimation(const char *fmt, int boyIndex, int count, float fps) {
     Animation *animation = Animation::create();
     animation->setDelayPerUnit(1/fps);
-	for (int i = 1; i <= count; i++){
+	for (int i = 0; i <= count; i++){
 		char name[50] = {0};
-		sprintf(name, fmt, boyIndex, i);
+		//sprintf(name, fmt, boyIndex, i);
+		sprintf(name,fmt,i);
 		SpriteFrame *frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(name);
 		animation->addSpriteFrame(frame);
 	}

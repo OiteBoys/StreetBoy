@@ -13,13 +13,15 @@ bool BackgroundLayer::init(){
 	int hour = lt->tm_hour;
 	//create the background image according to the current time;
 	
-	background1 = SPRITE("background_01.png");
+	//background1 = SPRITE("background_01.png");
+	background1 = Sprite::create("background.png",CCRectMake(0,0,798,480));
 	background1->getTexture()->setAntiAliasTexParameters();
 	background1->setAnchorPoint(Point::ZERO);
 	background1->setPosition(Point::ZERO);
 	this->addChild(background1);
 
-	background2 = SPRITE("background_01.png");
+	//background2 = SPRITE("background_01.png");
+	background2 = Sprite::create("background.png",CCRectMake(0,0,798,480));
 	background2->getTexture()->setAntiAliasTexParameters();
 	background2->setAnchorPoint(Point::ZERO);
 	background2->setPosition(this->background1->getContentSize().width - 2.0f,0);
